@@ -32,11 +32,15 @@ for j in range(len(used)):
     
     choice = str(input())
     
-    if choice == "b":
+    if choice in ["b", "и"]:
         break
         
     elif choice in ["s", "ы"]:
-        img = Image.open(f"{path}/img/  {i-1}.png")
+        img = Image.open(f"{path}/img/{i-1}.png")
+        img.show()
+        
+    elif choice in ["j", "о"]:
+        img = Image.open(f"{path}/img/{i-1}.png")
         img.show()
         
         showed += 1
