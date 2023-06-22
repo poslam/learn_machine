@@ -26,9 +26,9 @@ while (len(used) < size):
 for j in range(len(used)):
     gone += 1
     
-    i = used[j]+1
+    i = used[j]
     
-    print(data[i-2], f"{j+1}/49")
+    print(data[i-1], f"{j+1}/49")
     
     choice = str(input())
     
@@ -36,15 +36,15 @@ for j in range(len(used)):
         break
         
     elif choice in ["s", "ы"]:
-        img = Image.open(f"{path}/img/{i-1}.png")
+        img = Image.open(f"{path}/img/{i}.png")
         img.show()
         
     elif choice in ["j", "о"]:
-        img = Image.open(f"{path}/img/{i-1}.png")
+        img = Image.open(f"{path}/img/{i}.png")
         img.show()
         
         showed += 1
-        wrong.append(i-1)
+        wrong.append(i)
 
     else:
         continue
