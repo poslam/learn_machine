@@ -1,11 +1,18 @@
+import os
 from random import randint
-import subprocess
 import sys
 from PIL import Image
+import io
 
-size, path = 49, "/Users/deniskirienko4/Downloads/programms/fefu-study/learn_machine/img/linal1.2.2"
+# print(os.path.dirname(os.path.abspath(__file__)))
 
-data = [x.replace('\n', '') for x in open(f"{path}/data.txt").readlines()]
+size = 49
+if sys.platform == "win32":
+    path = "D:/programms/learn_machine/data/linal1.2.2"
+if sys.platform == "darwin":
+    path = "/Users/deniskirienko4/Downloads/programms/fefu-study/learn_machine/data/linal1.2.2"
+
+data = [x.replace('\n', '') for x in io.open(f"{path}/data.txt", encoding='utf-8').readlines()]
 
 showed, wrong, gone = 0, [], 0
 
@@ -16,27 +23,29 @@ while (len(used) < size):
     if x not in used:
         used.append(x)
 
-if sys.platform == "darwin":
-    for j in range(len(used)):
-        gone += 1
+for j in range(len(used)):
+    gone += 1
+    
+    i = used[j]+1
+    
+    print(data[i-2])
+    
+    choice = str(input())
+    
+    if choice == "b":
+        break
         
-        i = used[j]+1
+    elif choice == "s":
+        img = Image.open(f"{path}/{i-1}.png")
+        img.show()
         
-        print(data[i-2])
-        
-        choice = str(input())
-        
-        if choice == "b":
-            break
-            
-        elif choice == "s":
-            img = Image.open(f"{path}/{i-1}.png")
-            img.show()
-            
-            showed += 1
-            wrong.append(i-1)
+        showed += 1
+        wrong.append(i-1)
 
-        else:
-            continue
-        
+    else:
+        continue
+
+with open(f"{path}/result.txt", 'w') as file:
+    file.write(str(wrong)+'\n')
+
 print(f"showed: {showed}, passed: {gone-showed}, wrong: {wrong}")
