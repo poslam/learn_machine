@@ -49,7 +49,9 @@ for j in range(len(used)):
     else:
         continue
 
-with open(f"{path}/result.txt", 'w') as file:
+wrong = sorted(wrong)
+
+with open(f"{path}/result.txt", '+a') as file:
     file.write(str(wrong)+'\n')
 
 print(f"showed: {showed}, passed: {gone-showed}, wrong: {wrong}")
