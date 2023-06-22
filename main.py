@@ -28,15 +28,15 @@ for j in range(len(used)):
     
     i = used[j]+1
     
-    print(data[i-2])
+    print(data[i-2], f"{j+1}/49")
     
     choice = str(input())
     
     if choice == "b":
         break
         
-    elif choice == "s":
-        img = Image.open(f"{path}/{i-1}.png")
+    elif choice in ["s", "ы"]:
+        img = Image.open(f"{path}/img/  {i-1}.png")
         img.show()
         
         showed += 1
